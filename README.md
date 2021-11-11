@@ -1,1 +1,1 @@
-[DEMO LINK](https://marusaloza.github.io//demo-projeck/)
+[DEMO LINK](https://marusaloza.github.io/demo-project/)
