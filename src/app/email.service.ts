@@ -12,10 +12,9 @@ export class EmailService {
     if ( ! this.validEmailcodes.includes(email)) {
       this.validEmailcodes.push(email);
     }
-    console.log(this.validEmailcodes)
   };
 
   fakeHttp(value: string) {
-    return of( ! this.validEmailcodes.includes(value)).pipe(delay(1000));
+    return  ! this.validEmailcodes.includes(value)   
   }
 }

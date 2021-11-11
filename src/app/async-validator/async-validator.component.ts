@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { FormControl, FormGroup, Validators} from '@angular/forms';
 
-import {EmailValidator} from '../email-validator';
+import { EmailValidator} from '../email-validator';
 import { EmailService } from '../email.service';
 
 @Component({
@@ -11,31 +11,16 @@ import { EmailService } from '../email.service';
 })
 export class AsyncValidatorDemoComponent implements OnInit {
   @Input() parentForm!: FormGroup;
-  currentEmail: any;
-  currentEmailValue: any;
+  currentEmail!: string;
+  currentEmailValue!: string;
 
-  emailSyncValidators = [
-    Validators.required,
-  ];
-
-  // address: FormGroup =  new FormGroup({
-  //   email: new FormControl('',
-  //    this.emailSyncValidators,
-  //    EmailValidator.createValidator(this.emailService))
-  // });
-
-
-  constructor(private emailService: EmailService, ) {
-  };
+  constructor(private emailService: EmailService) { };
 
   ngOnInit(): void {
-    this.createForm()
+    this.parentForm.addControl(
+      'email', new FormControl('', [EmailValidator.createValidator(this.emailService), Validators.email,])
+    )
   };
-
-  createForm() {
-    this.parentForm.addControl('email',
-    new FormControl('', EmailValidator.createValidator(this.emailService))
-    )};
 
   saveEmailcode(): void {
     this.currentEmail = this.parentForm.value['email'];

@@ -2,3 +2,14 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+input, select{
+  height: 20px;
+  width: 150px;
+  border-radius: 5px;
+  border: 1px solid #eee;
+  transition: .3s border-color;
+}
+  
+input {
+  border: 1px solid #aaa;
+}

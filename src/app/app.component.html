@@ -16,10 +16,13 @@
     </div>
     <div class="form-group">
       <label>Birthday </label>
-      <app-calendar></app-calendar>
+      <app-calendar [parentForm]="myForm"></app-calendar>
+      <mat-error *ngIf="myForm.controls['calendar'].invalid && myForm.controls['calendar'].touched">
+        Please enter date
+      </mat-error>
     </div>
     <div class="form-group">
-      Technology
+      Framework
       <select (change)="techSelect()" formControlName="userTechnology">
         <option *ngFor="let item of technologyKeys" [value]="item">
           {{item}}
@@ -39,26 +42,32 @@
     </div>
     <div class="form-group">
       <app-async-validator
-      [parentForm]="myForm"
+        [parentForm]="myForm"
       >
       </app-async-validator>
+      <mat-error *ngIf="myForm.controls['email'].invalid && myForm.controls['email'].touched">
+        Please enter valid email
+      </mat-error>
     </div>
   <div formArrayName="userHobbi" >
     <div class="form-group" *ngFor="let item of getFormsControls()['controls']; let i = index">
       <label>Hobby </label>
       <input name="hobbi" class="form-control" formControlName="{{i}}">
     </div>
-    <button class="btn btn-default" (click)="addHobby()">
-      Add hobby
-    </button>
+    <div class="form-group">
+      <button class="btn btn-default" (click)="addHobby()">
+        Add hobby
+      </button>
+    </div>
   </div>
-    <button class="btn btn-default"
-      (click) = "log()"      
+  <div class="form-group">
+    <button
+      class="btn btn-default"
+      (click)="sendData()"
+      [disabled]="myForm.invalid"
     >
       Send
     </button>
+  </div>  
   </form>
 </div>
-
-
-<!-- [disabled]="myForm.invalid" -->
