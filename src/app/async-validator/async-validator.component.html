@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="cardContainer" *ngIf="parentForm.get('email') as email">
+    <form [formGroup]="parentForm">
+      Email
+      <label>
+        <input required formControlName="email" type="email" (change)="saveEmailcode()"/>
+      </label>
+      <mat-error *ngIf="email.hasError('invalidAsync')">
+        This email has already exist
+      </mat-error>
+    </form>
+  </div>
+</div>
